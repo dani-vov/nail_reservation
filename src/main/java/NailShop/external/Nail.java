@@ -1,15 +1,23 @@
 package NailShop.external;
 
+import org.springframework.beans.BeanUtils;
+
 import javax.persistence.*;
 
+@Entity
+@Table(name="Nail_table")
 public class Nail {
 
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
-    Long reservationId;
-    String employee;
-    String description;
-    Long fee;
-
+    private Long reservationId;
+    private String employee;
+    private String description;
+    private Long fee;
+    private String phoneNumber;
+    private String reservationDate;
+    private String ReservatorName;
 
     public Long getId() {
         return id;
@@ -47,7 +55,28 @@ public class Nail {
         this.fee = fee;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
+    public String getReservationDate() {
+        return reservationDate;
+    }
+
+    public void setReservationDate(String reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public String getReservatorName() {
+        return ReservatorName;
+    }
+
+    public void setReservatorName(String getReservatorName) {
+        this.ReservatorName = getReservatorName;
+    }
 
 }

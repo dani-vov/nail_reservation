@@ -1,0 +1,12 @@
+NailShop\ReservationReserved.class
+NailShop\external\NailService.class
+NailShop\ReservationCanceled.class
+NailShop\Reservation.class
+NailShop\external\NailServiceFallback.class
+NailShop\config\kafka\KafkaProcessor.class
+NailShop\Application.class
+NailShop\AbstractEvent.class
+NailShop\external\Nail.class
+NailShop\ReservationChanged.class
+NailShop\ReservationRepository.class
+NailShop\PolicyHandler.class

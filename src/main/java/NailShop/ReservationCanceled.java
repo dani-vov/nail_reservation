@@ -11,6 +11,7 @@ public class ReservationCanceled extends AbstractEvent {
     private String phoneNumber;
 
     public ReservationCanceled(Reservation reservation) {
+        super();
         this.reservationId = reservation.getId();
         this.reservatorName = reservation.getReservatorName();
         this.reservationDate = reservation.getReservationDate();

@@ -1,6 +1,6 @@
 package NailShop;
 
-public class ReservationReserved {
+public class ReservationReserved extends AbstractEvent {
 
     private Long reservationId;
 
@@ -11,6 +11,7 @@ public class ReservationReserved {
     private String phoneNumber;
 
     public ReservationReserved(Reservation reservation) {
+        super();
         this.reservationId = reservation.getId();
         this.reservatorName = reservation.getReservatorName();
         this.reservationDate = reservation.getReservationDate();

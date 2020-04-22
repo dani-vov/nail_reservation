@@ -1,13 +1,13 @@
 package NailShop;
 
+import NailShop.config.kafka.KafkaProcessor;
 import NailShop.external.Nail;
 import NailShop.external.NailService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.integration.support.MessageBuilder;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.util.MimeTypeUtils;
 
 import javax.persistence.*;
@@ -27,17 +27,7 @@ public class Reservation {
     private String phoneNumber;
 
     @PostPersist
-    public void publishReservationReservedEvent() {
-
-        Nail nail = new Nail();
-
-        nail.setReservationId(this.getId());
-        nail.setEmployee("파이리");
-        nail.setDescription("젤네일");
-        nail.setFee(50000L);
-
-        Application.applicationContext.getBean(NailService.class).work(nail);
-
+    public void publishReservationReservedEvent() throws InterruptedException {
         // Reserved 이벤트 발생
         ObjectMapper objectMapper = new ObjectMapper();
         String json = null;
@@ -48,15 +38,25 @@ public class Reservation {
             throw new RuntimeException("JSON format exception", e);
         }
 
-        Processor processor = Application.applicationContext.getBean(Processor.class);
-        MessageChannel outputChannel = processor.output();
+        KafkaProcessor processor;
+        processor = Application.applicationContext.getBean(KafkaProcessor.class);
+        MessageChannel outputChannel = processor.outboundTopic();
 
         outputChannel.send(MessageBuilder
                 .withPayload(json)
                 .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
                 .build());
 
+        Nail nail = new Nail();
+        nail.setReservationId(this.getId());
+        nail.setEmployee("파이리");
+        nail.setDescription("젤네일");
+        nail.setFee(50000L);
+        nail.setReservatorName(this.getReservatorName());
+        nail.setReservationDate(this.getReservationDate());
+        nail.setPhoneNumber(this.getPhoneNumber());
 
+        Application.applicationContext.getBean(NailService.class).work(nail);
     }
 
     @PostUpdate
@@ -70,8 +70,9 @@ public class Reservation {
             throw new RuntimeException("JSON format exception", e);
         }
 
-        Processor processor = Application.applicationContext.getBean(Processor.class);
-        MessageChannel outputChannel = processor.output();
+        KafkaProcessor processor;
+        processor = Application.applicationContext.getBean(KafkaProcessor.class);
+        MessageChannel outputChannel = processor.outboundTopic();
 
         outputChannel.send(MessageBuilder
                 .withPayload(json)
@@ -90,8 +91,9 @@ public class Reservation {
             throw new RuntimeException("JSON format exception", e);
         }
 
-        Processor processor = Application.applicationContext.getBean(Processor.class);
-        MessageChannel outputChannel = processor.output();
+        KafkaProcessor processor;
+        processor = Application.applicationContext.getBean(KafkaProcessor.class);
+        MessageChannel outputChannel = processor.outboundTopic();
 
         outputChannel.send(MessageBuilder
                 .withPayload(json)
