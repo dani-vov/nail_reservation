@@ -31,16 +31,17 @@ spring:
           destination: NailShop
           contentType: application/json
 
-logging:
-  level:
-    org.hibernate.type: trace
-    org.springframework.cloud: debug
+  logging:
+    level:
+      org.hibernate.type: trace
+      org.springframework.cloud: debug
+
 server:
   port: 8081
 
-  api:
-    url:
-      work: http://localhost:8082
+api:
+  url:
+    work: http://localhost:8082
 ---
 
 spring:
@@ -67,6 +68,6 @@ spring:
           destination: NailShop
           contentType: application/json
 
-  api:
-    url:
-      work: http://works:8080
+api:
+  url:
+    work: http://works:8080
