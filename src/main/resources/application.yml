@@ -70,4 +70,4 @@ spring:
 
 api:
   url:
-    work: http://works:8080
+    work: http://work:8080
