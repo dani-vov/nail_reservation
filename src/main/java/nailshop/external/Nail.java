@@ -1,6 +1,4 @@
-package NailShop.external;
-
-import org.springframework.beans.BeanUtils;
+package nailshop.external;
 
 import javax.persistence.*;
 

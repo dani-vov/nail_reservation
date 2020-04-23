@@ -1,4 +1,4 @@
-package NailShop.external;
+package nailshop.external;
 
 public abstract class NailServiceFallback implements NailService {
 

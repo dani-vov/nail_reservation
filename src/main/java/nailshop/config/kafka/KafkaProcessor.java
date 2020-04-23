@@ -1,4 +1,4 @@
-package NailShop.config.kafka;
+package nailshop.config.kafka;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.annotation.Output;

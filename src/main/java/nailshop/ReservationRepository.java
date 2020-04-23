@@ -1,4 +1,4 @@
-package NailShop;
+package nailshop;
 
 import org.springframework.data.repository.CrudRepository;
 

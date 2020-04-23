@@ -1,8 +1,8 @@
-package NailShop;
+package nailshop;
 
-import NailShop.config.kafka.KafkaProcessor;
-import NailShop.external.Nail;
-import NailShop.external.NailService;
+import nailshop.config.kafka.KafkaProcessor;
+import nailshop.external.Nail;
+import nailshop.external.NailService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.integration.support.MessageBuilder;
