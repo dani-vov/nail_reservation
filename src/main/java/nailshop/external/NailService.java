@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "work", url = "http://work:8080")
+@FeignClient(name = "work", url = "${api.url.work}")
 public interface NailService {
 
     @RequestMapping(method = RequestMethod.POST, path = "/nails")
